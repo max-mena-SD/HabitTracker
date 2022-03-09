@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 
-habits= ["test_habits"]
+habits= []
 
 app= Flask(__name__)
 
@@ -10,7 +10,8 @@ def index():
 
 @app.route("/add", methods=["GET", "POST"])
 def add_habit():
-    if request.form == "POST":
-        pass
+    if request.method == "POST":
+        habit=request.form.get("habit")
+        habits.append(habit)
 
     return render_template("add_habit.html", title="Habit Tracker - Add Habit")
