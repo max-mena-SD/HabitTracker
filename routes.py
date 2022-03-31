@@ -27,7 +27,7 @@ def index():
     else:
         selected_date=today_at_midnight()
     
-    habits_on_date = current_app.app.habits.find({"added":{"$lte": selected_date}})
+    habits_on_date = current_app.db.habits.find({"added":{"$lte": selected_date}})
     completions = [
         habit["habit"]
         for habit in current_app.db.completions.find({"date": selected_date})
